@@ -1,0 +1,13 @@
+<root>
+  <one>
+    <one_1>1.1 text</one_1>
+    <one_2>
+      <one_2_1>1.2.1 text</one_2_1>
+      <one_2_2>1.2.2 text</one_2_2>
+    </one_2>
+  </one>
+  <two>
+    <two_1>2.1 text</two_1>
+    <two_2>2.2 text</two_2>
+  </two>
+</root>
