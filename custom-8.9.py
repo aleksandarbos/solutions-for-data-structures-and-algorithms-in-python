@@ -1,22 +1,16 @@
 """
-given a proper binary tree T define the reflection of T to be the binary tree T' such that each
-node v in T is also in T' but the left child of v in T is v's right child in T' and the right child of v
-in T is v's left child in T'. Show that preorder traversal of proper binary tree T is the same as postorder traversal
-of T's reflection but in reverser order.
+make util for copying tree
 """
 
 from lxml import etree as et
 
 def copy_tree(source_el, target_el=None):
-    """
-    imported copy tree from 'custom-8.9.py'
-    """
     parent_el = target_el
     target_el = et.Element(source_el.tag, source_el.attrib)
     target_el.text = source_el.text
 
     if parent_el is not None:
-        parent_el.insert(0, target_el) # tree reflection
+        parent_el.append(target_el)
 
     for src_el in source_el:
         copy_tree(src_el, target_el)
