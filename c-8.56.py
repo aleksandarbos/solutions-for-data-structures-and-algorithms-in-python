@@ -20,7 +20,7 @@ def parenthetic_tree(el, d=0, step=2):
             print(' (')
         elif idx != l:
             print(end='\n')
-        parenthetic_tree(c, d+1)
+        parenthetic_tree(c, d+1, step=step)
 
     if is_first_child:
         closing_tag = "\n" + d * step * " " + ')'
@@ -30,43 +30,43 @@ if __name__ == "__main__":
     tree = et.parse('./input/trees/bookstore.xml')
     root = tree.getroot()
 
-    parenthetic_tree(root)
+    parenthetic_tree(root, step=4)
 
 """
-bookstore.xml
+bookstore.xml, step=4
 
 bookstore (
-  book (
-    title
-    author
-    year
-    price
-    sign (
-      test
-      fest
+    book (
+        title
+        author
+        year
+        price
+        sign (
+            test
+            fest
+        )
+        ign (
+            test
+            fest
+        )
     )
-    ign (
-      test
-      fest
+    book (
+        title
+        author
+        year
+        price
     )
-  )
-  book (
-    title
-    author
-    year
-    price
-  )
-  book (
-    title
-    author
-    year
-    price
-  )
+    book (
+        title
+        author
+        year
+        price
+    )
 )
 """
 
 """
-bin_tree_1.xml
+bin_tree_1.xml, step=2 (default)
 
 root (
   one (
