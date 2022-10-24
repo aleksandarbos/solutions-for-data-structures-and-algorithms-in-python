@@ -5,7 +5,6 @@ show that T is proper binary tree with n positions then when =>
     E(T) = I(T) + n - 1
 """
 
-from lxml import etree as et
 
 
 def preorder(el, d, internal_depths, external_depths):
@@ -17,6 +16,8 @@ def preorder(el, d, internal_depths, external_depths):
             preorder(c, d+1, internal_depths, external_depths)
 
 if __name__ == "__main__":
+    from lxml import etree as et
+
     internal_depths = []
     external_depths = []
     tree = et.parse('./input/trees/bin_tree_1.xml')

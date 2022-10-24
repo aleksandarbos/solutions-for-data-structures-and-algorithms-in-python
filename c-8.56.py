@@ -4,7 +4,6 @@ of the parenthetic representation of T that uses indentation and line breaks. Gi
 algorithm that prints this representation of a tree.
 """
 
-from lxml import etree as et
 
 def parenthetic_tree(el, d=0, step=2):
     label = d * step * " " + el.tag
@@ -27,6 +26,8 @@ def parenthetic_tree(el, d=0, step=2):
         print(closing_tag, end='')
 
 if __name__ == "__main__":
+    from lxml import etree as et
+
     tree = et.parse('./input/trees/bookstore.xml')
     root = tree.getroot()
 

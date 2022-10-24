@@ -1,9 +1,7 @@
 """
-give non-recursive impl of _upheap
+give non-recursive impl of _upheap linked list tree
 """
 
-from lxml import etree as et
-from copy import deepcopy
 
 def _upheap_r(node):
     """
@@ -56,6 +54,9 @@ def _upheap_2(node):
         parent = parent.getparent()
 
 if __name__ == "__main__":
+    from lxml import etree as et
+    from copy import deepcopy
+
     input_tree = './input/trees/unordered_heap_1.xml'
     tree = et.parse(input_tree)
     root = tree.getroot()

@@ -5,7 +5,6 @@ show how to specialize Euler traversal to print out all balance factors for all 
 within the tree T.
 """
 
-from lxml import etree as et
 
 
 def euler_tour(el, d, path):
@@ -62,5 +61,8 @@ def b_factor(el):
         print(f'el: {el}, h: {1 + max}, balance factor: {balance_factor}')
         return 1 + max
 
-tree = et.parse('./input/trees/bin_tree_1.xml')
-b_factor(tree.getroot())
+if __name__ == "__main__":
+    from lxml import etree as et
+
+    tree = et.parse('./input/trees/bin_tree_1.xml')
+    b_factor(tree.getroot())

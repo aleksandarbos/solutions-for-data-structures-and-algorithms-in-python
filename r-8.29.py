@@ -2,7 +2,6 @@
 calculate the number of descendants for each node using euler traversal algorithm
 """
 
-from lxml import etree as et
 
 
 def euler_tour_1(el, d, path, results):
@@ -34,6 +33,9 @@ def hook_postvisit(el, d, path, results):
         return len(results)
 
 
-results=[]
-tree = et.parse('./input/trees/bin_tree_1.xml')
-euler_tour_1(tree.getroot(), 0, [], results)
+if __name__ == "__main__":
+    from lxml import etree as et
+
+    results=[]
+    tree = et.parse('./input/trees/bin_tree_1.xml')
+    euler_tour_1(tree.getroot(), 0, [], results)

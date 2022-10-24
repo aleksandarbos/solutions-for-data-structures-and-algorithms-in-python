@@ -3,7 +3,6 @@ give an efficient algorithm that computes and prints for every position p of a t
 the element of p followed by the height of the p's subtree
 """
 
-from lxml import etree as et
 
 
 def height_all(el):
@@ -20,6 +19,8 @@ def height_all(el):
         return 1 + max
 
 if __name__ == "__main__":
+    from lxml import etree as et
+
     tree = et.parse('./input/trees/bin_tree_1.xml')
     root = tree.getroot()
     print(height_all(root))

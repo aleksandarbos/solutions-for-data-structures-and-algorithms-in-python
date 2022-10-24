@@ -3,9 +3,6 @@ exercise for using stack to find a matching parentheses
 """
 
 
-from operator import index
-
-
 def is_valid(expression):
     lefts = '{[('
     rights = '}])'

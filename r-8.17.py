@@ -1,6 +1,3 @@
-from lxml import etree as et
-
-tree = et.parse('./input/trees/bin_tree_1.xml')
 
 def euler_tour(el, d, path):
     results = [None, None]
@@ -33,5 +30,8 @@ def hook_invisit(el, d, path):
 def hook_postvisit(el, d, path, results):
     pass
 
+if __name__ == "__main__":
+    from lxml import etree as et
 
-euler_tour(tree.getroot(), 0, [])
+    tree = et.parse('./input/trees/bin_tree_1.xml')
+    euler_tour(tree.getroot(), 0, [])

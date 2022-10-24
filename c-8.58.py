@@ -6,8 +6,6 @@ describe an efficient algorithm for finding the LCA of p and q. What's running t
 of your algorithm?
 """
 
-from lxml import etree as et
-from time import time
 
 def lca(p, q):
     """
@@ -50,6 +48,9 @@ def lca2(p, q):
 
 
 if __name__ == "__main__":
+    from lxml import etree as et
+    from time import time
+
     tree = et.parse('./input/trees/bin_tree_1.xml')
     root = tree.getroot()
     p = root.xpath('//one_1[1]')[0]

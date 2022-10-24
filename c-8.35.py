@@ -4,7 +4,6 @@ satisfied: 1. both t1 and t2 are empty. 2. roots of t1 and t2 have same number k
 of t1 is isomorphic to the i-th subtree t2 for i=1,2,3...k
 """
 
-from lxml import etree as et
 
 def isomorphic(t1, t2):
     if len(t1) != len(t2):
@@ -18,6 +17,8 @@ def isomorphic(t1, t2):
     return True
 
 if __name__ == "__main__":
+    from lxml import etree as et
+
     tree1 = et.parse('./input/trees/isomorphic_1.xml')
     t1 = tree1.getroot()
 
