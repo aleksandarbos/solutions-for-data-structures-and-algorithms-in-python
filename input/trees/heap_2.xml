@@ -1,0 +1,16 @@
+<node val="2">
+  <node val="5">
+    <node val="9">
+      <node val="15" />
+      <node val="9" />
+    </node>
+    <node val="11">
+      <node val="13" />
+      <node val="15" />
+    </node>
+  </node>
+  <node val="3">
+    <node val="27" />
+    <node val="24" />
+  </node>
+</node>
