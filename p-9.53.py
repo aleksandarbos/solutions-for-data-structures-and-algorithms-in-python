@@ -71,8 +71,15 @@ def downheap(data, j):
 
 def downheap_max(data, j, stop_idx=None):
     """
-    array based recursive impl of downheap_max extended with stop_idx indicator
-    when downheap should stop.
+    Array based recursive implementation of max oriented down-heap with the ability to stop
+    bubbling at the given index position.
+
+    Parameters
+    ----------
+    j: int
+        position at which down heap bubbling should start at.
+    stop_idx: int
+        indicates at which index position down heap bubbling should stop at.
     """
     stop_idx = stop_idx or len(data)
 
@@ -80,17 +87,18 @@ def downheap_max(data, j, stop_idx=None):
         max_node = l_node = left(j)
         node_val = data[j]
         l_node_val = data[l_node]
-        r_node = -1
+
+        if l_node >= stop_idx:
+            return
 
         if has_right(data, j) and stop_idx > 2:
             r_node = right(j)
             r_node_val = data[r_node]
 
-            if r_node_val > l_node_val:
+            if r_node >= stop_idx:
+                return
+            elif r_node_val > l_node_val:
                 max_node = r_node
-
-        if any(n >= stop_idx for n in [l_node, r_node]): # ignore rest of the heap
-            return                                       # starting at index 'stop_idx'
 
         max_node_val = data[max_node]
 
@@ -123,8 +131,12 @@ def heap_sort(array):
 
 if __name__ == "__main__":
     import random
+
     A = [random.randint(0, 50) for i in range(0, 20)]
+    B = A[:]
 
     print(f'before heap-sort, A: {A}')
     heap_sort(A)
     print(f'after heap-sort, A: {A}')
+
+    assert A == sorted(B)
