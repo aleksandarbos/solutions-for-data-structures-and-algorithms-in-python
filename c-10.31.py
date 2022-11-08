@@ -9,20 +9,23 @@ initialize the array cells to be all true, and we "mark off" all the cells that 
 def iter_primes(M):
     """
     primes within range [M, 2M]
-    time - O(n)
-    space - O(n)
     """
-    A = [(i, True) for i in range(M, 2*M)]
+    A = [True] * 2*M
+    p = 2
 
-    for idx, (num, _) in enumerate(A):
-        for n in [2, 3, 5, 7]:
-            if num != n and num % n == 0:
-                A[idx] = (num, False)
+    while p*p < 2*M: # is the same as p < sqrt(2*M) (no math module import needed)
+        if A[p] is True:
+            for i in range(p*p, 2*M, p):
+                A[i] = False
+        p += 1
 
-    for i in range(0, len(A)):
-        if A[i][1]:
-            yield A[i][0]
+    for i in range(len(A)):
+        if A[i] and i > M:
+            yield i
 
 
 if __name__ == "__main__":
-    print(list(iter_primes(60)))
+    M = 60
+    expected_primes = [61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113]
+    actual_primes = list(iter_primes(M))
+    assert actual_primes == expected_primes
