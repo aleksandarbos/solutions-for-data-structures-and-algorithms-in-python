@@ -22,12 +22,6 @@ def find_all(seq, k):
     j = bin_search(seq, k) # find first
     result = [j]
 
-    for i in range(j-1, 0, -1): # search left of key
-        if seq[i] == k:
-            result.append(i)
-        else:
-            break
-
     for i in range(j+1, len(seq)): # search right of key
         if seq[i] == k:
             result.append(i)
@@ -43,7 +37,7 @@ if __name__ == "__main__":
 
     test_seq = random.sample(range(0, 100), n-1)
     test_seq.sort()
-    lookup_idx = random.randint(0, n-1)
+    lookup_idx = random.randint(0, n-2)
     lookup_el = test_seq[lookup_idx]
     test_seq.insert(lookup_idx+1, lookup_el) # make sure there's a duplicate
 
