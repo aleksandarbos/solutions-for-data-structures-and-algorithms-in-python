@@ -1,0 +1,18 @@
+<node val="16" leftSize="6">
+  <node val="4" leftSize="2">
+    <node val="2" leftSize="1">
+      <node val="0" leftSize="0" />
+    </node>
+    <node val="11" leftSize="1">
+      <node val="10" leftSize="0" />
+      <node val="14" leftSize="0" />
+    </node>
+  </node>
+  <node val="22" leftSize="1">
+    <node val="20" leftSize="0" />
+    <node val="34" leftSize="1">
+      <node val="28" leftSize="0" />
+      <node val="39" leftSize="0" />
+    </node>
+  </node>
+</node>
