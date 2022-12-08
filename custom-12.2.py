@@ -2,7 +2,7 @@
 initial merge-sort implementation.
 """
 
-def merge(A, B):
+def iter_merge(A, B):
     """
     merges two ordered sequences of variable length. time complexity: O(len(A)+len(B))
     """
@@ -38,7 +38,7 @@ def merge_sort(seq):
         s1 = merge_sort(seq[:n])
         s2 = merge_sort(seq[n:])
 
-        return list(merge(s1, s2))
+        return list(iter_merge(s1, s2))
 
 if __name__ == "__main__":
     a = [85, 24, 63, 45, 17, 31, 96, 50, 100]
