@@ -28,15 +28,16 @@ def iter_merge(A, B):
             yield A[i]
 
 def merge_sort(seq):
-    if len(seq) <= 2:
-        if len(seq) == 2:
-            if seq[0] > seq[1]:
-                seq[0], seq[1] = seq[1], seq[0]
+    """
+    immutable version of merge-sort algorithm.
+    creates new sorted array out of original `seq` sequence.
+    """
+    if len(seq) < 2:
         return seq
     else:
-        n = len(seq) // 2
-        s1 = merge_sort(seq[:n])
-        s2 = merge_sort(seq[n:])
+        mid = len(seq) // 2
+        s1 = merge_sort(seq[:mid])
+        s2 = merge_sort(seq[mid:])
 
         return list(iter_merge(s1, s2))
 
