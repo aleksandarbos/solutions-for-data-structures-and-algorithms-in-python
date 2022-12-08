@@ -1,5 +1,5 @@
 """
-initial merge-sort implementation.
+immutable merge-sort implementation.
 """
 
 def iter_merge(A, B):
