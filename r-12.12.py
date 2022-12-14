@@ -4,7 +4,6 @@ use condition left < right there would be a flaw. Explain the flaw and give a sp
 """
 
 def quicksort(S, a, b):
-    import pdb; pdb.set_trace()
     if a >= b:
         return
 
