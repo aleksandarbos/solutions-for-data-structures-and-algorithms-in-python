@@ -2,6 +2,7 @@
 in-place quicksort implementation using hoare's partition scheme.
 """
 
+
 def quicksort(S, a, b):
     if a >= b:
         return
@@ -14,7 +15,7 @@ def quicksort(S, a, b):
         while left <= right and S[left] < pivot:
             left += 1
 
-        while S[right] > pivot:
+        while left <= right and S[right] > pivot:
             right -= 1
 
         if left <= right:
