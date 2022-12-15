@@ -1,13 +1,17 @@
-import random
+"""
+Suppose S is a sequence of n values, each equal to 0 or 1. How long will it take to sort S
+with merge-sort algorithm? What about quick-sort?
+"""
 
-from time import time
 from shared_12_chapter import quicksort, merge_sort
-
 
 if __name__ == "__main__":
     """
     benchmarking merge-sort vs quicksort for arrays which consists only of 1's and 0's
     """
+
+    import random
+    from time import time
 
     n = 50
     S = [round(random.random()) for _ in range(n)]
@@ -18,7 +22,7 @@ if __name__ == "__main__":
     ranges = [10, 100, 100000]
 
     for r in ranges:
-        print(f'quicksort for range: {r}', end='')
+        print(f'quicksort {r} iterations', end='')
         t1 = time()
         for _ in range(r):
             quicksort(S)

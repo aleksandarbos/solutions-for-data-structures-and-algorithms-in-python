@@ -62,3 +62,32 @@ def merge_sort(seq):
 
     merge(s1, s2, seq)
 
+def insertion_sort(S):
+    for i in range(1, len(S)):
+        j = i - 1
+        temp = S[i]
+        while j >= 0 and temp < S[j]:
+            S[j+1] = S[j]
+            j -= 1
+        S[j+1] = temp
+
+
+def bucketsort(S, mutable_sort_method=insertion_sort):
+    """
+    bucketsort implementation with brute-force part sorting done with insertion-sort by default.
+    """
+    max_val = max(S)
+    ratio = max_val / len(S)
+    buckets = [[] for _ in range(len(S))]
+
+    for i in range(len(S)):
+        index = int(S[i] / ratio)
+        if S[i] == max_val:
+            buckets[-1].append(S[i])
+        else:
+            buckets[index].append(S[i])
+
+    for bucket in buckets:
+        mutable_sort_method(bucket)
+
+    return sum(buckets, [])
