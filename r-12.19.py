@@ -15,41 +15,32 @@ if __name__ == "__main__":
 
     n = 50
     S = [round(random.random()) for _ in range(n)]
-    # S = [0] * n
+    S = [0] * n
 
     print(f'testing for array S: {S}')
 
+    from shared import benchmark
+
     ranges = [10, 100, 100000]
+    benchmark(quicksort, iter_nums=ranges, S=S)
+    benchmark(merge_sort, iter_nums=ranges, seq=S)
 
-    for r in ranges:
-        print(f'quicksort {r} iterations', end='')
-        t1 = time()
-        for _ in range(r):
-            quicksort(S)
-        print(f', time: {time() - t1}')
-
-        print(f'merge-sort {r} iterations', end='')
-        t1 = time()
-        for _ in range(r):
-            merge_sort(S)
-        print(f', time: {time() - t1}')
-
-"""
-testing for array S: [0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0]
-quicksort for range: 10, time: 0.000997304916381836
-merge-sort 10 iterations, time: 0.0030007362365722656
-quicksort for range: 100, time: 0.0060138702392578125
-merge-sort 100 iterations, time: 0.02498650550842285
-quicksort for range: 100000, time: 3.9110195636749268
-merge-sort 100000 iterations, time: 16.3315110206604
+    """
+    testing for array S: [1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1]
+    running quicksort for 10 iterations, time elapsed: 0.0009996891021728516
+    running quicksort for 100 iterations, time elapsed: 0.010211467742919922
+    running quicksort for 100000 iterations, time elapsed: 9.153722047805786
+    running merge_sort for 10 iterations, time elapsed: 0.007335186004638672
+    running merge_sort for 100 iterations, time elapsed: 0.024003982543945312
+    running merge_sort for 100000 iterations, time elapsed: 27.144846200942993
 
 
-testing for array S: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-quicksort for range: 10, time: 0.0010004043579101562
-merge-sort 10 iterations, time: 0.002999544143676758
-quicksort for range: 100, time: 0.010994672775268555
-merge-sort 100 iterations, time: 0.0219876766204834
-quicksort for range: 100000, time: 2.9180185794830322
-merge-sort 100000 iterations, time: 14.838016748428345
+    testing for array S: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    running quicksort for 10 iterations, time elapsed: 0.0
+    running quicksort for 100 iterations, time elapsed: 0.0038824081420898438
+    running quicksort for 100000 iterations, time elapsed: 7.408846616744995
+    running merge_sort for 10 iterations, time elapsed: 0.015739917755126953
+    running merge_sort for 100 iterations, time elapsed: 0.023989200592041016
+    running merge_sort for 100000 iterations, time elapsed: 20.2160484790802
 
-"""
+    """

@@ -18,34 +18,24 @@ def bin_sort(S):
 
 if __name__ == "__main__":
     import random
-    from time import time
 
     n = 10
     S = [round(random.random()) for _ in range(n)]
 
     print(f'testing for array S: {S}')
 
-    ranges = [100000, 1000000, 20000000]
+    from shared import benchmark
 
-    for r in ranges:
-        print(f'insertion_sort {r} iterations', end='')
-        t1 = time()
-        for _ in range(r):
-            insertion_sort(S)
-        print(f', time: {time() - t1}')
+    ranges = [100000, 1000000, 2000000]
+    benchmark(insertion_sort, iter_nums=ranges, S=S)
+    benchmark(bin_sort, iter_nums=ranges, S=S)
 
-        print(f'bin_sort {r} iterations', end='')
-        t1 = time()
-        for _ in range(r):
-            bin_sort(S)
-        print(f', time: {time() - t1}')
-
-"""
-testing for array S: [0, 1, 0, 1, 1, 1, 1, 0, 0, 1]
-insertion_sort 100000 iterations, time: 0.4297511577606201
-bin_sort 100000 iterations, time: 0.4107651710510254
-insertion_sort 1000000 iterations, time: 2.793397903442383
-bin_sort 1000000 iterations, time: 2.6274960041046143
-insertion_sort 20000000 iterations, time: 62.46323275566101
-bin_sort 20000000 iterations, time: 54.04670000076294
-"""
+    """
+    testing for array S: [0, 1, 0, 0, 1, 1, 1, 1, 1, 1]
+    running insertion_sort for 100000 iterations, time elapsed: 1.8521027565002441
+    running insertion_sort for 1000000 iterations, time elapsed: 19.888442516326904
+    running insertion_sort for 2000000 iterations, time elapsed: 38.425713539123535
+    running bin_sort for 100000 iterations, time elapsed: 1.8709335327148438
+    running bin_sort for 1000000 iterations, time elapsed: 17.90862202644348
+    running bin_sort for 2000000 iterations, time elapsed: 34.60061478614807
+    """

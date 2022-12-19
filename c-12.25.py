@@ -36,27 +36,17 @@ if __name__ == "__main__":
     b. we don't know if T contains all the elements of the S
     c.
     """
-    from time import time
 
-    T = [100000, 1000000, 20000000]
-    for t in T:
-        t1 = time()
-        for i in range(t):
-            is_sorted(S)
-        print(f'is_sorted for {t} iterations completed in: {time() - t1}')
-
-        t1 = time()
-        for i in range(t):
-            is_sorted_2(S)
-        print(f'is_sorted_2 for {t} iterations completed in: {time() - t1}')
+    from shared import benchmark
+    T = [100000, 1000000, 2000000]
+    benchmark(is_sorted, T, S=S)
+    benchmark(is_sorted_2, T, lst=S)
 
     """
-    sequence: [19, 8, 41, 8, 27, 16, 33, 49, 4, 23] is sorted: False
-    sequence: [4, 8, 8, 16, 19, 23, 27, 33, 41, 49] is sorted: True
-    is_sorted for 100000 iterations completed in: 0.4223442077636719
-    is_sorted_2 for 100000 iterations completed in: 0.26900458335876465
-    is_sorted for 1000000 iterations completed in: 2.89949369430542
-    is_sorted_2 for 1000000 iterations completed in: 2.6019232273101807
-    is_sorted for 20000000 iterations completed in: 58.032275676727295
-    is_sorted_2 for 20000000 iterations completed in: 62.428250789642334
+    running is_sorted for 100000 iterations, time elapsed: 1.8002853393554688
+    running is_sorted for 1000000 iterations, time elapsed: 24.147040843963623
+    running is_sorted for 2000000 iterations, time elapsed: 49.521862506866455
+    running is_sorted_2 for 100000 iterations, time elapsed: 2.14522123336792
+    running is_sorted_2 for 1000000 iterations, time elapsed: 21.585848569869995
+    running is_sorted_2 for 2000000 iterations, time elapsed: 43.973034381866455
     """
