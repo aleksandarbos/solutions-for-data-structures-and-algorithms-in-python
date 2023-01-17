@@ -6,6 +6,8 @@ the brute-force pattern-matching algorithm to implement a function, count_brute(
 
 def find_brute(T, P, start=0):
     n, m = len(T), len(P)
+    if start > n - 1 or start > n - m:
+        return -1
     for i in range(start, n-m+1):
         k = 0
         while k < m and T[i + k] == P[k]:
@@ -15,7 +17,8 @@ def find_brute(T, P, start=0):
     return -1
 
 def count_brute(T, P):
-    m = len(P)
+    n, m = len(T), len(P)
+    if m == 0: return n + 1
     k = 0
     cnt = 0
     while True:
@@ -30,5 +33,8 @@ def count_brute(T, P):
 if __name__ == "__main__":
     T = 'alaabababasada'
     P = 'aba'
+    assert count_brute(T, P) == T.count(P)
 
+    T = "asdasd"
+    P = ""
     assert count_brute(T, P) == T.count(P)
