@@ -38,11 +38,22 @@ def refill_strategy(holes, k):
             break
 
 if __name__ == "__main__":
-    holes = [3, 4, 5, 7, 9, 13, 14] # 1D problem
-    k = 5
+
+    # 1D problem - distances from the start - in km :)
+    holes = [3, 4, 5, 7, 9, 13, 14]
+    k = 5 # num of km he can walk without refilling the bottle
     assert list(refill_strategy(holes, k)) == [5, 9, 14]
 
+    """
+    explanation: since Antatjari can go 5km without need to refill the water,
+    he can go straight to 5km, therefore skipping watering holes located at 3 and 4km from
+    the start. from position located at 5km away from start he can reach any position located at
+    most 10km from start, the furthest watering hole lesser than 10km is the one at 9km.
+    now starting at 9km + additional 5km after bottle refilling, he can go up to 14km and
+    there's one located exactly 14km from the start.
+    """
 
-    holes = [3, 4, 5, 7, 9, 10, 13] # 1D problem
+
+    holes = [3, 4, 5, 7, 9, 10, 13]
     k = 3
     assert list(refill_strategy(holes, k)) == [3, 5, 7, 10, 13]
