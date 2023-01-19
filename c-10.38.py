@@ -7,7 +7,7 @@ n is the number of elements in the dictionary and s is the number of items with 
 
 def bin_search(seq, k, low=0, high=None):
     """
-    finds leftmost index of searched value less than or equal to key k.
+    return index of the leftmost item with value greater than or equal to k.
     """
     if high is None:
         high = len(seq)-1
