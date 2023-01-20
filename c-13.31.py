@@ -16,6 +16,7 @@ def position_guards(X):
     paintings = []
     potential_guard = None
     old_len = 0
+    X.sort() # O(nlogn)
 
     for idx, pos in enumerate(X):
         potential_guard = potential_guard or pos
@@ -49,7 +50,7 @@ if __name__ == "__main__":
     assert guards == [0.5, 2.9, 6, 10, 15, 20]
     assert num_of_guards == 6
 
-    X = [0.01, 0.62, 1.43, 4.49, 4.64, 5.22, 6.31, 7.22, 7.96, 9.55]
+    X = [4.64, 7.96, 9.55, 0.01, 1.43, 4.49, 5.22, 6.31, 0.62, 7.22]
     guards = position_guards(X)
     num_of_guards = len(guards)
     assert guards == [0.62, 4.49, 7.22, 9.55]
