@@ -14,4 +14,4 @@ Also feel free to contribute some of the exercises that I've missed.
 
 I've personally found this book more than useful, with plenty of challenging tasks and "smart" ideas. Big thanks to the authors! 
 
-Good luck, and enjoy on your path to becoming a skilled software developer! :)
+Good luck, and enjoy your path to becoming a skilled software developer! :)
