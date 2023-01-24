@@ -1,4 +1,4 @@
-# solutions for data structures and algorithms in python
+# solutions to exercises for data structures and algorithms in python
 Solutions for exercises from the book Data Structures and Algorithms in Python by Michael H. Goldwasser, Michael T. Goodrich, and Roberto Tamassia.
 
 This repo contains some of the solutions starting from `Chapter 5`, mostly the ones I found interesting to code down. Note that some of the solutions might be incorrect, 
