@@ -25,4 +25,7 @@ if __name__ == "__main__":
     tree2 = et.parse('./input/trees/isomorphic_2.xml')
     t2 = tree2.getroot()
 
-    print(f'isomorphic(t1, t2): {isomorphic(t1, t2)}')
+    is_isomorphic = isomorphic(t1, t2)
+    assert is_isomorphic
+
+    print(f'isomorphic(t1, t2): {is_isomorphic}')

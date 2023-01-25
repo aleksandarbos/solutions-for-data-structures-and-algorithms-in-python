@@ -23,7 +23,6 @@ def find1(l):
 
 def find2(l):
     """
-
     len(l) = 10
     timeit 100000 loops, best of 3: 12.9 us per loop
     len(l) = 1000

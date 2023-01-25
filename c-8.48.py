@@ -31,3 +31,11 @@ if __name__ == "__main__":
 
 
     print(et.tostring(target_tree, pretty_print=True).decode())
+
+"""
+<root>
+  <two>
+    <two_2>2.2 text</two_2><two_1>2.1 text</two_1></two><one>
+    <one_2>
+      <one_2_2>1.2.2 text</one_2_2><one_2_1>1.2.1 text</one_2_1></one_2><one_1>1.1 text</one_1></one></root>
+"""

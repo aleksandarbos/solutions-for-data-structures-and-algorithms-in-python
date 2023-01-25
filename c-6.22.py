@@ -67,6 +67,9 @@ print(eval_postfix1(e1))
 print(eval_postfix1(e2))
 print(eval_postfix1(e3))
 
+assert eval_postfix1(e1) == 40.0
+assert eval_postfix1(e2) == 16.0
+assert eval_postfix1(e3) == 28.0
 
 
 def eval_postfix2(expr):
@@ -104,6 +107,11 @@ print("---eval_postfix2---")
 print(eval_postfix2(e1))
 print(eval_postfix2(e2))
 print(eval_postfix2(e3))
+
+assert eval_postfix2(e1) == 40.0
+assert eval_postfix2(e2) == 16.0
+assert eval_postfix2(e3) == 28.0
+
 
 print("--- benchmarking ---")
 

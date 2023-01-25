@@ -5,8 +5,6 @@ show how to specialize Euler traversal to print out all balance factors for all 
 within the tree T.
 """
 
-
-
 def euler_tour(el, d, path):
     """
     todo: finish this

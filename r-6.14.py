@@ -85,3 +85,4 @@ d.append(s.pop())
 d.append(s.pop())
 
 print(d)
+assert list(d) == [1, 2, 3, 5, 4, 6, 7, 8]

@@ -35,7 +35,11 @@ class CaesarCipher:
 if __name__ == "__main__":
     cipher = CaesarCipher(3)
     message = "BEER AT JOE'S EAGLES ARE PLAYING"
+
     coded = cipher.encrypt(message)
-    print( 'Secret:' , coded)
+    print('Secret:' , coded)
+    assert coded != message
+
     answer = cipher.decrypt(coded)
-    print( 'Message:' , answer)
+    print('Message:' , answer)
+    assert answer == message

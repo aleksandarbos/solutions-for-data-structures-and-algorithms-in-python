@@ -5,8 +5,6 @@ show that T is proper binary tree with n positions then when =>
     E(T) = I(T) + n - 1
 """
 
-
-
 def preorder(el, d, internal_depths, external_depths):
     if len(el) == 0:
         external_depths.append(d)

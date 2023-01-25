@@ -18,12 +18,14 @@ def is_valid(expression):
                 return False
     return len(s) == 0
 
-e1 = "[()]"
-e2 = "{[{()}]}"
-e3 = "}"
-e4 = "{{()}"
 
-print(is_valid(e1))
-print(is_valid(e2))
-print(is_valid(e3))
-print(is_valid(e4))
+if __name__ == "__main__":
+    e1 = "[()]"
+    e2 = "{[{()}]}"
+    e3 = "}"
+    e4 = "{{()}"
+
+    assert is_valid(e1)
+    assert is_valid(e2)
+    assert not is_valid(e3)
+    assert not is_valid(e4)

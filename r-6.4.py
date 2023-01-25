@@ -1,4 +1,3 @@
-s = ['A', 'l', 'e', 'k', 's', 'a', 'n', 'd', 'a', 'r']
 
 
 def clear(s):
@@ -7,8 +6,12 @@ def clear(s):
     s.pop()
     clear(s)
 
-print(f'before cleaning, len(s): {len(s)}')
+if __name__ == "__main__":
+    s = ['A', 'l', 'e', 'k', 's', 'a', 'n', 'd', 'a', 'r']
+    print(f'before cleaning, len(s): {len(s)}')
+    assert len(s) == 10
 
-clear(s)
+    clear(s)
 
-print(f'after cleaning, len(s): {len(s)}')
+    print(f'after cleaning, len(s): {len(s)}')
+    assert len(s) == 0

@@ -53,3 +53,5 @@ if __name__ == "__main__":
     quicksort(s)
     print(f'num of times "quicksort" is called: {quicksort.cnt}')
 
+    assert quicksort.cnt == 19
+

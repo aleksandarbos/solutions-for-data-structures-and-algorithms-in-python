@@ -33,6 +33,8 @@ d.append(q.get())
 d.append(q.get())
 d.append(q.get())
 print(d)
+assert list(d) == [1, 2, 3, 8, 7, 6, 4, 5]
+
 
 # queue: 1, 2, 3, 5, 4, 6, 7, 8
 q.put(d.popleft())
@@ -55,5 +57,6 @@ d.append(q.get())
 d.append(q.get())
 
 print(d)
+assert list(d) == [1, 2, 3, 5, 4, 6, 7, 8]
 
 
