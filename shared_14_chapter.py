@@ -10,7 +10,10 @@ class Vertex(object):
             self._element = element
 
     def element(self):
-        return self._element
+        try:
+            return self._element
+        except AttributeError:
+            return None
 
 class Edge(object):
     __slots__ = '_origin', '_destination', '_element'
@@ -22,6 +25,12 @@ class Edge(object):
         if element is not None:
             self._element = element
 
+    def element(self):
+        try:
+            return self._element
+        except AttributeError:
+            return None
+
     def endpoints(self):
         return (self._origin, self._destination)
 
@@ -29,6 +38,12 @@ class Edge(object):
         if v not in (self._origin, self._destination):
             raise Exception('Vertex is not an endpoint of this edge.')
         return self._destination if v == self._origin else self._origin
+
+    def __repr__(self):
+        if self._element is not None:
+            return f'Edge[{self._origin} ->[{self._element}] {self._destination}]'
+        else:
+            return super().__repr__()
 
 class Graph(object):
 
@@ -85,6 +100,40 @@ class Graph(object):
         adj = self._outgoing if outgoing else self._incoming
         return len(adj[v])
 
+def prim_jarnik(g):
+    from heapq import heappush, heappop
+
+    d = {}
+    tree = []
+    h = []
+
+    # insertion counter bc Gods of Python won't make normal PriorityQueue class
+    dummy = 0
+
+    for v in g.vertices():
+        if len(d) == 0:
+            d[v] = 0
+        else:
+            d[v] = float('inf')
+        dummy += 1
+        heappush(h, (d[v], dummy, (v, None))) # dummy autoincr will make last tuple out of comparison
+
+    while len(h) > 0:
+        key, _, value = heappop(h)
+        u, edge = value
+        if edge is not None:
+            tree.append(edge)
+        for link in g.incident_edges(u):
+            v = link.opposite(u)
+            e = next((e for e in h if e[0] == d[v] and e[2][0] == v), None)
+            if e is not None:
+                wgt = link.element()
+                if wgt < d[v]:
+                    d[v] = wgt
+                    del h[h.index(e)]
+                    heappush(h, (d[v], e[1], (v, link)))
+    return tree
+
 if __name__ == "__main__":
     # make a triangle shaped undirected cyclic graph
     g = Graph()
@@ -92,9 +141,9 @@ if __name__ == "__main__":
     v2 = g.insert_vertex()
     v3 = g.insert_vertex()
 
-    e1 = g.insert_edge(v1, v2)
-    e2 = g.insert_edge(v2, v3)
-    e3 = g.insert_edge(v3, v1)
+    e1 = g.insert_edge(v1, v2, element=10)
+    e2 = g.insert_edge(v2, v3, element=20)
+    e3 = g.insert_edge(v3, v1, element=30)
 
     assert g.edge_count() == 3
     assert g.vertex_count() == 3
@@ -104,3 +153,4 @@ if __name__ == "__main__":
     assert list(g.incident_edges(v1)) == [e1, e3]
     assert g.degree(v1) == 2
     assert g.get_edge(v3, v1) == e3
+    assert prim_jarnik(g) == [e1, e2]
