@@ -15,6 +15,13 @@ class Vertex(object):
         except AttributeError:
             return None
 
+    def __repr__(self):
+        if hasattr(self, '_element') is not None:
+            return f'Vertex[{self._element}]'
+        else:
+            return super().__repr__()
+
+
 class Edge(object):
     __slots__ = '_origin', '_destination', '_element'
 
