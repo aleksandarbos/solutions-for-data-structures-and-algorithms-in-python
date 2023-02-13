@@ -122,6 +122,19 @@ class Graph(object):
             u = e.opposite(v)
             del self._outgoing[u][v]
 
+    def remove_edge(self, e):
+        """
+        removes edge `e` from graph in O(1) time.
+        exercise: c-14.38.
+        """
+        u, v = e.endpoints()
+
+        del self._outgoing[u][v]
+        if self.is_directed():
+            del self._incoming[v][u]
+        else:
+            del self._outgoing[v][u]
+
 def prim_jarnik(g):
     from heapq import heappush, heappop
 
@@ -182,6 +195,9 @@ if __name__ == "__main__":
     assert g.vertices() == {v2, v3}
     assert e2.endpoints() == (v2, v3)
 
+    g.remove_edge(e2)
+    assert g.edges() == set()
+
     # directed triangle graph v1 -> v2, v1 -> v3, v2 -> v3
     g_dir = Graph(directed=True)
     v1 = g_dir.insert_vertex(element='v1')
@@ -199,3 +215,6 @@ if __name__ == "__main__":
     g_dir.remove_vertex(v3)
     assert g_dir.edges() == {e1}
     assert g_dir.vertices() == {v1, v2}
+
+    g_dir.remove_edge(e1)
+    assert g_dir.edges() == set()
