@@ -23,15 +23,10 @@ class Edge(object):
     def __init__(self, origin, destination, element=None, *args, **kwargs):
         self._origin = origin
         self._destination = destination
-
-        if element is not None:
-            self._element = element
+        self._element = element
 
     def element(self):
-        try:
-            return self._element
-        except AttributeError:
-            return None
+        return self._element
 
     def endpoints(self):
         return (self._origin, self._destination)
