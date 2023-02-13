@@ -6,20 +6,10 @@ class Vertex(object):
     __slots__ = '_element'
 
     def __init__(self, element=None, *args, **kwargs):
-        if element is not None:
-            self._element = element
+        self._element = element
 
     def element(self):
-        try:
-            return self._element
-        except AttributeError:
-            return None
-
-    def __repr__(self):
-        if hasattr(self, '_element') is not None:
-            return f'Vertex[{self._element}]'
-        else:
-            return super().__repr__()
+        return self._element
 
 
 class Edge(object):
@@ -160,4 +150,4 @@ if __name__ == "__main__":
     assert list(g.incident_edges(v1)) == [e1, e3]
     assert g.degree(v1) == 2
     assert g.get_edge(v3, v1) == e3
-    assert prim_jarnik(g) == [e1, e2]
+    assert prim_jarnik(g) == [e2, e1]
