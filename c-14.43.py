@@ -43,7 +43,10 @@ def get_cycle(g, start_node, discovered):
     edges starting from the first to the last one discovered.
     """
     back_edge = find_back_edge(g, start_node, discovered)
-    return construct_cycle_path(g, back_edge, discovered)
+    if back_edge is not None:
+        return construct_cycle_path(g, back_edge, discovered)
+    else:
+        return []
 
 if __name__ == "__main__":
     from shared_14_chapter import Graph
@@ -68,3 +71,16 @@ if __name__ == "__main__":
     discovered = {v1: (None, '0')}
     cycle = get_cycle(g, start_node=v1, discovered=discovered)
     assert cycle == [e3, e4, e6, e7]
+
+
+    g = Graph(directed=True)
+    v1 = g.insert_vertex(element='v1')
+    v2 = g.insert_vertex(element='v2')
+    v3 = g.insert_vertex(element='v3')
+    e1 = g.insert_edge(v1, v2, element='e1')
+    e2 = g.insert_edge(v1, v3, element='e2')
+    e3 = g.insert_edge(v2, v3, element='e3')
+
+    discovered = {v1: (None, '0')}
+    cycle = get_cycle(g, start_node=v1, discovered=discovered)
+    assert cycle == []
