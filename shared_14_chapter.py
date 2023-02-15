@@ -130,6 +130,12 @@ class Graph(object):
         else:
             del self._outgoing[v][u]
 
+def dfs(g, u, discovered={}):
+    for e in g.incident_edges(u):
+        v = e.opposite(u)
+        if v not in discovered:
+            discovered[v] = e
+
 def prim_jarnik(g):
     from heapq import heappush, heappop
 
