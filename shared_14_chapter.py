@@ -2,6 +2,8 @@
 graph and graph related stuff
 """
 
+from collections import deque
+
 class Vertex(object):
     __slots__ = '_element'
 
@@ -135,6 +137,22 @@ def dfs(g, u, discovered={}):
         v = e.opposite(u)
         if v not in discovered:
             discovered[v] = e
+
+def bfs(g, u, discovered):
+    """
+    bfs using fifo queue
+    """
+    q = deque()
+    q.append(u)
+
+    while len(q) > 0:
+        print(q)
+        v = q.popleft()
+        for e in g.incident_edges(v):
+            new_v = e.opposite(v)
+            if new_v not in discovered:
+                discovered[new_v] = e
+                q.append(new_v)
 
 def prim_jarnik(g):
     from heapq import heappush, heappop
