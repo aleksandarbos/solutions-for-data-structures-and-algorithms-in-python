@@ -40,7 +40,7 @@ class Edge(object):
         if self._element is not None:
             return f'Edge[{self._origin} ->[{self._element}] {self._destination}]'
         else:
-            return super().__repr__()
+            return f'Edge[{self._origin} -> {self._destination}]'
 
 class Graph(object):
 
