@@ -146,7 +146,6 @@ def bfs(g, u, discovered):
     q.append(u)
 
     while len(q) > 0:
-        print(q)
         v = q.popleft()
         for e in g.incident_edges(v):
             new_v = e.opposite(v)
