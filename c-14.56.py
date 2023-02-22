@@ -15,24 +15,28 @@ b. Is the center unique? If not, how many distinct centers can a tree
 have?
 """
 
-from shared_14_chapter import construct_path
-
 from copy import deepcopy
 
 def tree_center(g):
     """
-    returns tree center with minimal eccentricity
+    returns tree center/bicenter with minimal eccentricity
     """
     g_cpy = deepcopy(g) # O(n+m)
 
     while g_cpy.vertex_count() > 1:
-        for v in g_cpy.vertices():
-            if g_cpy.degree(v) == 1:
-                g_cpy.remove_vertex(v)
+        if g_cpy.vertex_count() == 2:
+            it = iter(iter(g_cpy.vertices()))
+            v1 = next(it)
+            v2 = next(it)
+            e = next(iter(g_cpy.edges()))
+            if set(e.endpoints()) == {v1, v2}:
+                break
+        to_remove = [v for v in g_cpy.vertices() if g_cpy.degree(v) == 1]
+        for v in to_remove:
+            g_cpy.remove_vertex(v)
 
     centers = [v.element() for v in g_cpy.vertices()]
     return {v for v in g.vertices() if v.element() in centers}
-
 
 
 if __name__ == "__main__":
@@ -83,4 +87,46 @@ if __name__ == "__main__":
     e14 = g.insert_edge(v14, v15, 'e14')
 
     center = tree_center(g)
-    assert center == {v7}
+    assert center == {v2}
+
+
+    g = Graph()
+    v1 = g.insert_vertex('v1')
+    v2 = g.insert_vertex('v2')
+    v3 = g.insert_vertex('v3')
+    v4 = g.insert_vertex('v4')
+    v5 = g.insert_vertex('v5')
+    v6 = g.insert_vertex('v6')
+    v7 = g.insert_vertex('v7')
+    v8 = g.insert_vertex('v8')
+
+    e1 = g.insert_edge(v1, v3, 'e1')
+    e2 = g.insert_edge(v2, v3, 'e2')
+    e3 = g.insert_edge(v2, v4, 'e3')
+    e4 = g.insert_edge(v2, v5, 'e4')
+    e5 = g.insert_edge(v3, v6, 'e5')
+    e6 = g.insert_edge(v5, v7, 'e6')
+    e7 = g.insert_edge(v7, v8, 'e7')
+
+    center = tree_center(g)
+    assert center == {v2, v5}
+
+
+    g = Graph()
+    v1 = g.insert_vertex('v1')
+    v2 = g.insert_vertex('v2')
+    v3 = g.insert_vertex('v3')
+    v4 = g.insert_vertex('v4')
+    v5 = g.insert_vertex('v5')
+    v6 = g.insert_vertex('v6')
+    v7 = g.insert_vertex('v7')
+
+    e1 = g.insert_edge(v1, v3, 'e1')
+    e2 = g.insert_edge(v2, v3, 'e2')
+    e3 = g.insert_edge(v2, v4, 'e3')
+    e4 = g.insert_edge(v2, v5, 'e4')
+    e5 = g.insert_edge(v3, v6, 'e5')
+    e6 = g.insert_edge(v5, v7, 'e6')
+
+    center = tree_center(g)
+    assert center == {v2}
