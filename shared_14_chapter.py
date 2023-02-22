@@ -153,6 +153,21 @@ def bfs(g, u, discovered):
                 discovered[new_v] = e
                 q.append(new_v)
 
+def construct_path(g, end, start, discovered):
+    """
+    reconstructs the path from the vertex `start` to the `end` vertex using
+    `discovered` discovery search map.
+    """
+    path = []
+
+    walk = start
+    while walk is not end:
+        e, _ = discovered[walk]
+        path.append(e)
+        walk = e.opposite(walk)
+    path.reverse()
+    return path
+
 def prim_jarnik(g):
     from heapq import heappush, heappop
 
