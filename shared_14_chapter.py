@@ -88,7 +88,7 @@ class Graph(object):
         return edges
 
     def get_edge(self, u, v):
-        return self._outgoing[u].get(v)
+        return self._outgoing[u].get(v, None)
 
     def incident_edges(self, v, outgoing=True):
         adj = self._outgoing if outgoing else self._incoming
@@ -201,6 +201,25 @@ def prim_jarnik(g):
                     del h[h.index(e)]
                     heappush(h, (d[v], e[1], (v, link)))
     return tree
+
+def floyd_warshall(g):
+    """
+    code fragment: 14.10
+    """
+    from copy import deepcopy
+
+    closure = deepcopy(g)
+    v_lst = list(closure.vertices())
+    n = len(v_lst)
+
+    for k in range(n):
+        for i in range(n):
+            if k != i and closure.get_edge(v_lst[i], v_lst[k]) is not None:
+                for j in range(n):
+                    if i != j != k and closure.get_edge(v_lst[k], v_lst[j]) is not None:
+                        if closure.get_edge(v_lst[i], v_lst[j]) is None:
+                            closure.insert_edge(v_lst[i], v_lst[j])
+    return closure
 
 if __name__ == "__main__":
     # make a triangle shaped undirected cyclic graph
