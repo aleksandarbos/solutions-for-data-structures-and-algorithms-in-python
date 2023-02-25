@@ -153,6 +153,28 @@ def bfs(g, u, discovered):
                 discovered[new_v] = e
                 q.append(new_v)
 
+def topological_sort(g):
+    """
+    code fragment 14.11
+    """
+    topo = []
+    ready = []
+    incount = {}
+
+    for u in g.vertices():
+        incount[u] = g.degree(u, outgoing=False)
+        if incount[u] == 0:
+            ready.append(u)
+    while len(ready) > 0:
+        u = ready.pop()
+        topo.append(u)
+        for e in g.incident_edges(u):
+            v = e.opposite(u)
+            incount[v] -= 1
+            if incount[v] == 0:
+                ready.append(v)
+    return topo
+
 def construct_path(g, end, start, discovered):
     """
     reconstructs the path from the vertex `start` to the `end` vertex using

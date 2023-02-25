@@ -5,27 +5,7 @@ that G contains the edge (i, j) if and only if i < j, for all i, j in [0,n− 1]
 Give an O(n2)-time algorithm for detecting if G is compact.
 """
 
-def topological_sort(g):
-    """
-    code fragment 14.11
-    """
-    topo = []
-    ready = []
-    incount = {}
-
-    for u in g.vertices():
-        incount[u] = g.degree(u, outgoing=False)
-        if incount[u] == 0:
-            ready.append(u)
-    while len(ready) > 0:
-        u = ready.pop()
-        topo.append(u)
-        for e in g.incident_edges(u):
-            v = e.opposite(u)
-            incount[v] -= 1
-            if incount[v] == 0:
-                ready.append(v)
-    return topo
+from shared_14_chapter import topological_sort
 
 def is_compact(g):
     """
