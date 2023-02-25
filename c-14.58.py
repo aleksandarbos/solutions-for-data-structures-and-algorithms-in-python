@@ -30,10 +30,6 @@ def floyd_warshall(g):
                             closure.insert_edge(v_lst[i], v_lst[j], trans_weight)
     return closure, v_lst
 
-def shortest_paths(closure):
-    for v in closure.vertices():
-        pass
-
 if __name__ == "__main__":
     from shared_14_chapter import Graph
 
