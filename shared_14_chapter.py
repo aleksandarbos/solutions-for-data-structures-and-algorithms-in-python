@@ -3,6 +3,8 @@ graph and graph related stuff
 """
 
 from collections import deque
+from heapq import heapify, heappop, heappush
+from copy import deepcopy
 
 class Vertex(object):
     __slots__ = '_element'
@@ -153,6 +155,36 @@ def bfs(g, u, discovered):
                 discovered[new_v] = e
                 q.append(new_v)
 
+
+def dijkstra(g, src):
+    d = {}
+    cloud = {}
+    h = []
+    dummy = 0
+
+    for v in g.vertices():
+        if v is src:
+            d[v] = 0
+        else:
+            d[v] = float('inf')
+        h.append((d[v], dummy, v)) # adding dummy so `v` is never compared in radix sort
+        dummy += 1
+    heapify(h)
+
+    while len(h) > 0:
+        d_w, _, v = heappop(h)
+        cloud[v] = d_w
+        for e in g.incident_edges(v):
+            u = e.opposite(v)
+            if u not in cloud:
+                entry = next((e for e in h if e[2] == u), None)
+                wgt = e.element()
+                if d[v] + wgt < d[u]:
+                    d[u] = d[v] + wgt
+                    del h[h.index(entry)]
+                    heappush(h, (d[u], entry[1], u))
+    return cloud
+
 def topological_sort(g):
     """
     code fragment 14.11
@@ -191,8 +223,6 @@ def construct_path(g, end, start, discovered):
     return path
 
 def prim_jarnik(g):
-    from heapq import heappush, heappop
-
     d = {}
     tree = []
     h = []
@@ -228,8 +258,6 @@ def floyd_warshall(g):
     """
     code fragment: 14.10
     """
-    from copy import deepcopy
-
     closure = deepcopy(g)
     v_lst = list(closure.vertices())
     n = len(v_lst)

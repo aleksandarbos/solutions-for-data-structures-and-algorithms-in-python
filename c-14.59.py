@@ -8,36 +8,7 @@ NOTE: dijkstra algorithm is failing with negative edges for certain edge cases
 such as displayed in here: https://stackoverflow.com/a/8081947/5736491
 """
 
-from heapq import heapify, heappop, heappush
-
-def dijkstra(g, src):
-    d = {}
-    cloud = {}
-    h = []
-    dummy = 0
-
-    for v in g.vertices():
-        if v is src:
-            d[v] = 0
-        else:
-            d[v] = float('inf')
-        h.append((d[v], dummy, v)) # adding dummy so `v` is never compared in radix sort
-        dummy += 1
-    heapify(h)
-
-    while len(h) > 0:
-        d_w, _, v = heappop(h)
-        cloud[v] = d_w
-        for e in g.incident_edges(v):
-            u = e.opposite(v)
-            if u not in cloud:
-                entry = next((e for e in h if e[2] == u), None)
-                wgt = e.element()
-                if d[v] + wgt < d[u]:
-                    d[u] = d[v] + wgt
-                    del h[h.index(entry)]
-                    heappush(h, (d[u], entry[1], u))
-    return cloud
+from shared_14_chapter import dijkstra
 
 def construct_path(g, s, d):
     path = []
