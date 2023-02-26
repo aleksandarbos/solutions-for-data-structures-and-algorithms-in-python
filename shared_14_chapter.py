@@ -291,6 +291,34 @@ def prim_jarnik(g):
                     heappush(h, (d[v], e[1], (v, link)))
     return tree
 
+def kruskal_mst(g):
+    """
+    code fragment: 14.18
+    """
+    tree = []
+    h = []
+    forest = Partition()
+    position = {}
+    dummy = 0
+
+    for v in g.vertices():
+        position[v] = forest.make_group(v)
+
+    for e in g.edges():
+        heappush(h, (e.element(), dummy, e))
+        dummy += 1 # bc of heap radix sort
+
+    size = g.vertex_count()
+    while len(tree) != size -1 and len(h) > 0:
+        wgt, _, edge = heappop(h)
+        u, v = edge.endpoints()
+        a = forest.find(position[u])
+        b = forest.find(position[v])
+        if a is not b:
+            forest.union(a, b)
+            tree.append(edge)
+    return tree
+
 def floyd_warshall(g):
     """
     code fragment: 14.10
@@ -328,6 +356,7 @@ if __name__ == "__main__":
     assert g.degree(v1) == 2
     assert g.get_edge(v3, v1) == e3
     assert set(prim_jarnik(g)) == {e2, e1}
+    assert set(kruskal_mst(g)) == {e2, e1}
 
     g.remove_vertex(v1)
     assert g.edges() == {e2}
