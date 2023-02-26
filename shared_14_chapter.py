@@ -134,6 +134,43 @@ class Graph(object):
         else:
             del self._outgoing[v][u]
 
+
+class Partition:
+    """
+    code fragment: 14.19
+    """
+    class Position:
+        __slots__ = '_container', '_element', '_size', '_parent'
+
+        def __init__(self, container, e):
+            self._container = container
+            self._element = e
+            self._size = 1
+            self._parent = self
+
+        def element(self):
+            return self._element
+
+    def make_group(self, e):
+        return self.Position(self, e)
+
+    def find(self, p):
+        if p._parent != p:
+            p._parent = self.find(p._parent)
+        return p._parent
+
+    def union(self, p, q):
+        a = self.find(p)
+        b = self.find(q)
+
+        if a is not b:
+            if a._size > b._size:
+                b._parent = a._parent
+                a._size += b._size
+            else:
+                a._parent = b._parent
+                b._size += a._size
+
 def dfs(g, u, discovered={}):
     for e in g.incident_edges(u):
         v = e.opposite(u)
@@ -290,7 +327,7 @@ if __name__ == "__main__":
     assert list(g.incident_edges(v1)) == [e1, e3]
     assert g.degree(v1) == 2
     assert g.get_edge(v3, v1) == e3
-    assert prim_jarnik(g) == [e2, e1]
+    assert set(prim_jarnik(g)) == {e2, e1}
 
     g.remove_vertex(v1)
     assert g.edges() == {e2}
@@ -320,3 +357,25 @@ if __name__ == "__main__":
 
     g_dir.remove_edge(e1)
     assert g_dir.edges() == set()
+
+    # partition testing
+
+    partition = Partition()
+    pg1 = partition.make_group(v1)
+    pg2 = partition.make_group(v2)
+    pg3 = partition.make_group(v3)
+
+    assert pg1.element() == v1
+    assert pg2.element() == v2
+    assert pg3.element() == v3
+
+    assert pg1._container == partition
+
+    assert pg2._size == 1
+    partition.union(pg1, pg2)
+    assert pg2._size == 2
+    partition.find(pg1) == partition.find(pg2)
+
+    partition.union(pg2, pg3)
+    assert pg2._size == 3
+    assert partition.find(pg1) == partition.find(pg2) == partition.find(pg3)
