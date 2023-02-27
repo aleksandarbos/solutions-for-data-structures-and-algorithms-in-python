@@ -8,24 +8,7 @@ centers a and b, outputs the maximum bandwidth of a path between a and b.
 """
 
 from collections import deque
-
-def find_all_paths_bfs(g, s, t):
-    """
-    finds all possible paths between nodes `s` and `t` in O(E+V)
-    """
-    q = deque([(s, [])])
-    paths = []
-
-    while q:
-        v, path = q.popleft()
-        if v == t:
-            paths.append(path)
-        else:
-            for e in g.incident_edges(v):
-                u = e.opposite(v)
-                if e not in path and u != s:
-                    q.append((u, path + [e]))
-    return paths
+from shared_14_chapter import find_all_paths_bfs
 
 def max_bandwidth(g, s, t):
     paths = find_all_paths_bfs(g, s, t)

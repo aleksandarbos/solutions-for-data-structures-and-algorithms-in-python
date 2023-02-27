@@ -336,6 +336,24 @@ def floyd_warshall(g):
                             closure.insert_edge(v_lst[i], v_lst[j])
     return closure
 
+def find_all_paths_bfs(g, s, t):
+    """
+    finds all possible paths between nodes `s` and `t` in O(E+V)
+    """
+    q = deque([(s, [])])
+    paths = []
+
+    while q:
+        v, path = q.popleft()
+        if v == t:
+            paths.append(path)
+        else:
+            for e in g.incident_edges(v):
+                u = e.opposite(v)
+                if e not in path and u != s:
+                    q.append((u, path + [e]))
+    return paths
+
 if __name__ == "__main__":
     # make a triangle shaped undirected cyclic graph
     g = Graph()
